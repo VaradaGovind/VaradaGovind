@@ -1,0 +1,222 @@
+name: Generate Banner SVG
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # runs every day at midnight UTC
+  push:
+    branches: [main]
+  workflow_dispatch:        # allows manual trigger from GitHub UI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch GitHub stats & generate banner.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: VaradaGovind
+        run: |
+          python3 - << 'PYEOF'
+          import urllib.request, json, os, datetime
+
+          token    = os.environ["GITHUB_TOKEN"]
+          username = os.environ["USERNAME"]
+          headers  = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
+
+          # ── Fetch user profile ──────────────────────────────────
+          req  = urllib.request.Request(f"https://api.github.com/users/{username}", headers=headers)
+          user = json.loads(urllib.request.urlopen(req).read())
+          repos_count = user.get("public_repos", 0)
+          followers   = user.get("followers", 0)
+
+          # ── Fetch repos for star count ──────────────────────────
+          req   = urllib.request.Request(
+              f"https://api.github.com/users/{username}/repos?per_page=100",
+              headers=headers)
+          repos = json.loads(urllib.request.urlopen(req).read())
+          stars = sum(r.get("stargazers_count", 0) for r in repos)
+
+          # ── Fetch contribution count via GraphQL ────────────────
+          now   = datetime.datetime.utcnow()
+          start = datetime.datetime(now.year, 1, 1).strftime("%Y-%m-%dT00:00:00Z")
+          end   = now.strftime("%Y-%m-%dT23:59:59Z")
+          query = json.dumps({"query": f"""
+          {{
+            user(login: "{username}") {{
+              contributionsCollection(from: "{start}", to: "{end}") {{
+                contributionCalendar {{
+                  totalContributions
+                  weeks {{
+                    contributionDays {{
+                      contributionCount
+                      date
+                    }}
+                  }}
+                }}
+              }}
+            }}
+          }}
+          """})
+          gql_req = urllib.request.Request(
+              "https://api.github.com/graphql",
+              data=query.encode(),
+              headers={**headers, "Content-Type": "application/json"})
+          gql_data  = json.loads(urllib.request.urlopen(gql_req).read())
+          cal       = gql_data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          total     = cal["totalContributions"]
+
+          # ── Build monthly buckets (last 12 months) ───────────────
+          monthly = {}
+          for week in cal["weeks"]:
+            for day in week["contributionDays"]:
+              m = day["date"][:7]   # YYYY-MM
+              monthly[m] = monthly.get(m, 0) + day["contributionCount"]
+
+          sorted_months = sorted(monthly.keys())[-12:]
+          counts = [monthly.get(m, 0) for m in sorted_months]
+          labels = [m[5:] for m in sorted_months]   # MM
+          month_abbr = {"01":"J","02":"F","03":"M","04":"A","05":"M","06":"J",
+                        "07":"J","08":"A","09":"S","10":"O","11":"N","12":"D"}
+          labels = [month_abbr.get(l, l) for l in labels]
+
+          max_c  = max(counts) if max(counts) > 0 else 1
+          BAR_H  = 70   # max bar height in SVG
+          bar_x  = [288 + i * 18 for i in range(12)]
+          BASELINE = 165
+
+          # ── Current streak ──────────────────────────────────────
+          all_days = []
+          for week in cal["weeks"]:
+            for day in week["contributionDays"]:
+              all_days.append((day["date"], day["contributionCount"]))
+          all_days.sort(reverse=True)
+          streak = 0
+          for _, c in all_days:
+            if c > 0:
+              streak += 1
+            else:
+              break
+
+          # ── Build bar SVG elements ──────────────────────────────
+          BLUE_TOP="#388bfd"; BLUE_BOT="#1f6feb"
+          GRN_TOP="#3fb950";  GRN_BOT="#238636"
+          bar_els = ""
+          lbl_els = ""
+          for i, (cnt, lx, lbl) in enumerate(zip(counts, bar_x, labels)):
+            h = max(4, int(cnt / max_c * BAR_H))
+            y = BASELINE - h
+            color = f"url(#bg2)" if i >= 6 else f"url(#bg1)"
+            bar_els += f'<rect x="{lx}" width="13" y="{y}" height="{h}" rx="3" fill="{color}" opacity="0.9"/>\n    '
+            lbl_els += f'<text x="{lx+1}" y="178" class="mono" fill="#484f58" font-size="7.5">{lbl}</text>\n    '
+
+          updated = now.strftime("%d %b %Y")
+
+          # ── Write SVG ──────────────────────────────────────────
+          svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="820" height="240">
+            <defs>
+              <style>
+                @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:0.3}}}}
+                .cur{{animation:pulse 1.1s ease-in-out infinite}}
+                .mono{{font-family:'Courier New',Courier,monospace}}
+              </style>
+              <clipPath id="clip"><rect width="820" height="240" rx="14"/></clipPath>
+              <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="{BLUE_TOP}"/>
+                <stop offset="100%" stop-color="{BLUE_BOT}"/>
+              </linearGradient>
+              <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="{GRN_TOP}"/>
+                <stop offset="100%" stop-color="{GRN_BOT}"/>
+              </linearGradient>
+            </defs>
+
+            <rect width="820" height="240" rx="14" fill="#0d1117"/>
+            <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="0.7" fill="#161b22"/>
+            </pattern>
+            <rect width="820" height="240" fill="url(#dots)" clip-path="url(#clip)"/>
+            <rect x="0" y="0" width="3" height="240" fill="#388bfd" rx="2"/>
+
+            <!-- LEFT: Info cards -->
+            <rect x="16" y="16" width="230" height="72" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="28" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">ENGINEER</text>
+            <text x="28" y="56" class="mono" fill="#e6edf3" font-size="18" font-weight="bold">Varada Govind</text>
+            <text x="28" y="72" class="mono" fill="#388bfd" font-size="10">@VaradaGovind · he/him</text>
+
+            <rect x="16" y="96" width="110" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="28" y="114" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">REPOS</text>
+            <text x="28" y="140" class="mono" fill="#e6edf3" font-size="22" font-weight="bold">{repos_count}</text>
+            <text x="28" y="152" class="mono" fill="#6e7681" font-size="9">public</text>
+
+            <rect x="134" y="96" width="112" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="146" y="114" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">STARS</text>
+            <text x="146" y="140" class="mono" fill="#f0883e" font-size="22" font-weight="bold">{stars}</text>
+            <text x="146" y="152" class="mono" fill="#6e7681" font-size="9">earned</text>
+
+            <rect x="16" y="164" width="230" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="28" y="182" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">WIP</text>
+            <circle cx="28" cy="199" r="4" fill="#f0883e"/>
+            <text x="38" y="202" class="mono" fill="#f0883e" font-size="11" font-weight="bold">OrionRV</text>
+            <text x="96" y="202" class="mono" fill="#6e7681" font-size="10"> — 4-core RV32IM SoC</text>
+            <text x="28" y="216" class="mono" fill="#6e7681" font-size="9">SystemVerilog · multicore · in progress</text>
+
+            <!-- MIDDLE: Activity graph -->
+            <rect x="260" y="16" width="270" height="208" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="272" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">COMMIT ACTIVITY</text>
+            <circle cx="400" cy="31" r="4" fill="#3fb950"/>
+            <text x="408" y="35" class="mono" fill="#3fb950" font-size="9">{total} this year</text>
+            <text x="268" y="88" class="mono" fill="#484f58" font-size="8">hi</text>
+            <text x="268" y="128" class="mono" fill="#484f58" font-size="8">md</text>
+            <text x="268" y="165" class="mono" fill="#484f58" font-size="8">lo</text>
+            <line x1="284" y1="165" x2="516" y2="165" stroke="#21262d" stroke-width="0.8"/>
+            {bar_els}
+            {lbl_els}
+            <line x1="272" y1="192" x2="522" y2="192" stroke="#21262d" stroke-width="0.8"/>
+            <text x="280" y="207" class="mono" fill="#6e7681" font-size="9">streak</text>
+            <text x="320" y="207" class="mono" fill="#388bfd" font-size="9" font-weight="bold">{streak} days</text>
+            <text x="380" y="207" class="mono" fill="#6e7681" font-size="9">total</text>
+            <text x="410" y="207" class="mono" fill="#e6edf3" font-size="9" font-weight="bold">{total}</text>
+            <text x="450" y="207" class="mono" fill="#6e7681" font-size="9">updated {updated}</text>
+
+            <!-- RIGHT: Top projects -->
+            <rect x="544" y="16" width="262" height="208" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+            <text x="556" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">TOP PROJECTS</text>
+            <line x1="556" y1="44" x2="794" y2="44" stroke="#21262d" stroke-width="0.8"/>
+            <text x="564" y="66" class="mono" fill="#f0883e" font-size="9">⬡</text>
+            <text x="580" y="64" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">OrionRV</text>
+            <text x="580" y="76" class="mono" fill="#6e7681" font-size="9">4-core RV32IM SoC</text>
+            <circle cx="790" cy="63" r="3.5" fill="#f0883e"/>
+            <line x1="556" y1="86" x2="794" y2="86" stroke="#21262d" stroke-width="0.5"/>
+            <text x="564" y="102" class="mono" fill="#388bfd" font-size="9">⚡</text>
+            <text x="580" y="100" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">rtl-riscv32</text>
+            <text x="580" y="112" class="mono" fill="#6e7681" font-size="9">single-cycle RV32I</text>
+            <circle cx="790" cy="101" r="3.5" fill="#3fb950"/>
+            <line x1="556" y1="122" x2="794" y2="122" stroke="#21262d" stroke-width="0.5"/>
+            <text x="564" y="138" class="mono" fill="#d2a8ff" font-size="9">⬟</text>
+            <text x="580" y="136" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">CMOS-Std-Cell-Lib</text>
+            <text x="580" y="148" class="mono" fill="#6e7681" font-size="9">transistor-level primitives</text>
+            <circle cx="790" cy="137" r="3.5" fill="#3fb950"/>
+            <line x1="556" y1="158" x2="794" y2="158" stroke="#21262d" stroke-width="0.5"/>
+            <text x="564" y="174" class="mono" fill="#7ee787" font-size="9">⇄</text>
+            <text x="580" y="172" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">rtl-spi-controller</text>
+            <text x="580" y="184" class="mono" fill="#6e7681" font-size="9">full-duplex SPI master/slave</text>
+            <circle cx="790" cy="173" r="3.5" fill="#3fb950"/>
+            <line x1="556" y1="194" x2="794" y2="194" stroke="#21262d" stroke-width="0.5"/>
+            <rect x="556" y="207" width="6" height="10" rx="1" fill="#388bfd" class="cur"/>
+            <text x="566" y="216" class="mono" fill="#484f58" font-size="9">{repos_count} public repos · Verilog · SystemVerilog · C++</text>
+          </svg>"""
+
+          with open("banner.svg", "w") as f:
+            f.write(svg)
+          print(f"Generated banner.svg — {total} contributions, {streak} day streak")
+          PYEOF
+
+      - name: Commit updated banner.svg
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add banner.svg
+          git diff --staged --quiet || git commit -m "chore: update banner.svg [skip ci]"
+          git push
