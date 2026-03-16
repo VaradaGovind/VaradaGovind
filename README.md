@@ -1,40 +1,22 @@
 <p align="center">
-  <!-- 
-    STEP 1: Download a free lazy panda GIF from https://giphy.com/search/lazy-panda
-    STEP 2: Upload it to this repo as panda.gif
-    STEP 3: Delete this comment block — the image will just work
-  -->
-  <img src="https://raw.githubusercontent.com/VaradaGovind/VaradaGovind/main/panda.gif" width="220" />
+  <img src="https://raw.githubusercontent.com/VaradaGovind/VaradaGovind/main/panda.gif" width="260" />
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=14&pause=1000&color=58A6FF&center=true&vCenter=true&width=435&lines=Digital+Hardware+Engineer;RTL+%7C+RISC-V+%7C+SoC+Design;Building+silicon%2C+one+clock+cycle+at+a+time." />
+  <a href="https://github.com/VaradaGovind">
+    <img width="820" src="https://raw.githubusercontent.com/VaradaGovind/VaradaGovind/main/banner.svg" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=VaradaGovind&theme=github-dark-blue&hide_border=true&date_format=j%20M%5B%20Y%5D&background=0D1117&stroke=30363D&ring=388BFD&fire=F0883E&currStreakLabel=388BFD&sideLabels=8B949E&dates=484F58&currStreakNum=E6EDF3&sideNums=E6EDF3" />
 </p>
 
 <br/>
 
-<div align="center">
-
-```
-varada@silicon:~$ cat whoami.txt
-```
-
-</div>
-
-```
-  handle   :  VaradaGovind
-  focus    :  RTL design · RISC-V architecture · SoC · CMOS circuits
-  tools    :  SystemVerilog · Verilog · LTspice · Vivado · Arduino (C++)
-  wip      :  OrionRV — 4-core RV32IM multicore SoC
-```
-
-<div align="center">
-
 ```
 varada@silicon:~$ ls -1 projects/
 ```
-
-</div>
 
 ```
 # ── Processors & SoC ────────────────────────────────────────────
@@ -60,13 +42,9 @@ varada@silicon:~$ ls -1 projects/
   DinoDash-Arduino            →  Chrome Dino runner on OLED/LCD
 ```
 
-<div align="center">
-
 ```
 varada@silicon:~$ git log --oneline -3
 ```
-
-</div>
 
 ```
 a1f3c2e  OrionRV: multicore memory consistency
