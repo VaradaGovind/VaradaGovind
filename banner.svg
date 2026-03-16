@@ -1,99 +1,183 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="820" height="240">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 260" width="860" height="260">
   <defs>
     <style>
-      @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-      .cur{animation:pulse 1.1s ease-in-out infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.2}}
+      @keyframes grow1{0%{height:0;y:172}100%{height:40;y:132}}
+      @keyframes grow2{0%{height:0;y:172}100%{height:65;y:107}}
+      @keyframes grow3{0%{height:0;y:172}100%{height:28;y:144}}
+      @keyframes grow4{0%{height:0;y:172}100%{height:78;y:94}}
+      @keyframes grow5{0%{height:0;y:172}100%{height:18;y:154}}
+      @keyframes grow6{0%{height:0;y:172}100%{height:52;y:120}}
+      @keyframes grow7{0%{height:0;y:172}100%{height:68;y:104}}
+      @keyframes grow8{0%{height:0;y:172}100%{height:44;y:128}}
+      @keyframes grow9{0%{height:0;y:172}100%{height:33;y:139}}
+      @keyframes grow10{0%{height:0;y:172}100%{height:58;y:114}}
+      @keyframes grow11{0%{height:0;y:172}100%{height:22;y:150}}
+      @keyframes grow12{0%{height:0;y:172}100%{height:48;y:124}}
+      .b1{animation:grow1 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.05s both}
+      .b2{animation:grow2 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.12s both}
+      .b3{animation:grow3 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.19s both}
+      .b4{animation:grow4 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.26s both}
+      .b5{animation:grow5 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.33s both}
+      .b6{animation:grow6 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.40s both}
+      .b7{animation:grow7 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.47s both}
+      .b8{animation:grow8 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.54s both}
+      .b9{animation:grow9 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.61s both}
+      .b10{animation:grow10 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.68s both}
+      .b11{animation:grow11 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.75s both}
+      .b12{animation:grow12 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.82s both}
+      .cur{animation:pulse 1.2s ease-in-out infinite}
+      .lbl{font-family:'Courier New',Courier,monospace;font-size:8.5px;fill:#484f58;letter-spacing:0.5px}
+      .cap{font-family:'Courier New',Courier,monospace;font-size:8px;fill:#6e7681;letter-spacing:1.5px}
+      .val{font-family:'Courier New',Courier,monospace;font-size:11px;fill:#e6edf3;font-weight:bold}
+      .sub{font-family:'Courier New',Courier,monospace;font-size:9px;fill:#6e7681}
       .mono{font-family:'Courier New',Courier,monospace}
     </style>
-    <clipPath id="clip"><rect width="820" height="240" rx="14"/></clipPath>
-    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#388bfd"/>
-      <stop offset="100%" stop-color="#1f6feb"/>
+    <clipPath id="clip"><rect width="860" height="260" rx="16"/></clipPath>
+    <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#388bfd" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#1f6feb" stop-opacity="0.8"/>
     </linearGradient>
-    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3fb950"/>
-      <stop offset="100%" stop-color="#238636"/>
+    <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3fb950" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#238636" stop-opacity="0.8"/>
     </linearGradient>
+    <!-- Card shadow effect via filter -->
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
-  <rect width="820" height="240" rx="14" fill="#0d1117"/>
-  <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-    <circle cx="1" cy="1" r="0.7" fill="#161b22"/>
+  <!-- ── Background ─────────────────────────────────────────── -->
+  <rect width="860" height="260" rx="16" fill="#0d1117"/>
+  <pattern id="grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+    <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#161b22" stroke-width="0.4"/>
   </pattern>
-  <rect width="820" height="240" fill="url(#dots)" clip-path="url(#clip)"/>
-  <rect x="0" y="0" width="3" height="240" fill="#388bfd" rx="2"/>
+  <rect width="860" height="260" fill="url(#grid)" clip-path="url(#clip)" opacity="0.6"/>
 
-  <!-- LEFT: Info cards -->
-  <rect x="16" y="16" width="230" height="72" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="28" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">ENGINEER</text>
-  <text x="28" y="56" class="mono" fill="#e6edf3" font-size="18" font-weight="bold">Varada Govind</text>
-  <text x="28" y="72" class="mono" fill="#388bfd" font-size="10">@VaradaGovind · he/him</text>
+  <!-- Left accent gradient bar -->
+  <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#388bfd"/>
+    <stop offset="100%" stop-color="#3fb950"/>
+  </linearGradient>
+  <rect x="0" y="0" width="3" height="260" fill="url(#accent)"/>
 
-  <rect x="16" y="96" width="110" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="28" y="114" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">REPOS</text>
-  <text x="28" y="140" class="mono" fill="#e6edf3" font-size="22" font-weight="bold">15</text>
-  <text x="28" y="152" class="mono" fill="#6e7681" font-size="9">public</text>
+  <!-- ── LEFT COLUMN ─────────────────────────────────────────── -->
 
-  <rect x="134" y="96" width="112" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="146" y="114" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">STARS</text>
-  <text x="146" y="140" class="mono" fill="#f0883e" font-size="22" font-weight="bold">2</text>
-  <text x="146" y="152" class="mono" fill="#6e7681" font-size="9">earned</text>
+  <!-- Identity card -->
+  <rect x="18" y="18" width="238" height="80" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="32" y="38" class="cap">ENGINEER</text>
+  <text x="32" y="62" class="mono" fill="#e6edf3" font-size="20" font-weight="bold" letter-spacing="-0.3">Varada Govind</text>
+  <text x="32" y="80" class="mono" fill="#388bfd" font-size="10" letter-spacing="0.3">@VaradaGovind · he/him</text>
 
-  <rect x="16" y="164" width="230" height="60" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="28" y="182" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">WIP</text>
-  <circle cx="28" cy="199" r="4" fill="#f0883e"/>
-  <text x="38" y="202" class="mono" fill="#f0883e" font-size="11" font-weight="bold">OrionRV</text>
-  <text x="96" y="202" class="mono" fill="#6e7681" font-size="10"> — 4-core RV32IM SoC</text>
-  <text x="28" y="216" class="mono" fill="#6e7681" font-size="9">SystemVerilog · multicore · in progress</text>
+  <!-- Stats row — Repos + Stars side by side -->
+  <rect x="18" y="108" width="114" height="66" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="32" y="126" class="cap">REPOS</text>
+  <text x="32" y="154" class="mono" fill="#e6edf3" font-size="26" font-weight="bold">15</text>
+  <text x="32" y="168" class="sub">public</text>
 
-  <!-- MIDDLE: Activity graph -->
-  <rect x="260" y="16" width="270" height="208" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="272" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">COMMIT ACTIVITY</text>
-  <circle cx="400" cy="31" r="4" fill="#3fb950"/>
-  <text x="408" y="35" class="mono" fill="#3fb950" font-size="9">7 this year</text>
-  <text x="268" y="88" class="mono" fill="#484f58" font-size="8">hi</text>
-  <text x="268" y="128" class="mono" fill="#484f58" font-size="8">md</text>
-  <text x="268" y="165" class="mono" fill="#484f58" font-size="8">lo</text>
-  <line x1="284" y1="165" x2="516" y2="165" stroke="#21262d" stroke-width="0.8"/>
-  <rect x="288" width="13" y="161" height="4" rx="3" fill="url(#bg1)" opacity="0.9"/>
-    <rect x="306" width="13" y="113" height="52" rx="3" fill="url(#bg1)" opacity="0.9"/>
-    <rect x="324" width="13" y="95" height="70" rx="3" fill="url(#bg1)" opacity="0.9"/>
-    
-  <text x="289" y="178" class="mono" fill="#484f58" font-size="7.5">J</text>
-    <text x="307" y="178" class="mono" fill="#484f58" font-size="7.5">F</text>
-    <text x="325" y="178" class="mono" fill="#484f58" font-size="7.5">M</text>
-    
-  <line x1="272" y1="192" x2="522" y2="192" stroke="#21262d" stroke-width="0.8"/>
-  <text x="280" y="207" class="mono" fill="#6e7681" font-size="9">streak</text>
-  <text x="320" y="207" class="mono" fill="#388bfd" font-size="9" font-weight="bold">2 days</text>
-  <text x="380" y="207" class="mono" fill="#6e7681" font-size="9">total</text>
-  <text x="410" y="207" class="mono" fill="#e6edf3" font-size="9" font-weight="bold">7</text>
-  <text x="450" y="207" class="mono" fill="#6e7681" font-size="9">updated 16 Mar 2026</text>
+  <rect x="142" y="108" width="114" height="66" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="156" y="126" class="cap">STARS</text>
+  <text x="156" y="154" class="mono" fill="#f0883e" font-size="26" font-weight="bold">2</text>
+  <text x="156" y="168" class="sub">earned</text>
 
-  <!-- RIGHT: Top projects -->
-  <rect x="544" y="16" width="262" height="208" rx="8" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
-  <text x="556" y="36" class="mono" fill="#8b949e" font-size="9" letter-spacing="1">TOP PROJECTS</text>
-  <line x1="556" y1="44" x2="794" y2="44" stroke="#21262d" stroke-width="0.8"/>
-  <text x="564" y="66" class="mono" fill="#f0883e" font-size="9">⬡</text>
-  <text x="580" y="64" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">OrionRV</text>
-  <text x="580" y="76" class="mono" fill="#6e7681" font-size="9">4-core RV32IM SoC</text>
-  <circle cx="790" cy="63" r="3.5" fill="#f0883e"/>
-  <line x1="556" y1="86" x2="794" y2="86" stroke="#21262d" stroke-width="0.5"/>
-  <text x="564" y="102" class="mono" fill="#388bfd" font-size="9">⚡</text>
-  <text x="580" y="100" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">rtl-riscv32</text>
-  <text x="580" y="112" class="mono" fill="#6e7681" font-size="9">single-cycle RV32I</text>
-  <circle cx="790" cy="101" r="3.5" fill="#3fb950"/>
-  <line x1="556" y1="122" x2="794" y2="122" stroke="#21262d" stroke-width="0.5"/>
-  <text x="564" y="138" class="mono" fill="#d2a8ff" font-size="9">⬟</text>
-  <text x="580" y="136" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">CMOS-Std-Cell-Lib</text>
-  <text x="580" y="148" class="mono" fill="#6e7681" font-size="9">transistor-level primitives</text>
-  <circle cx="790" cy="137" r="3.5" fill="#3fb950"/>
-  <line x1="556" y1="158" x2="794" y2="158" stroke="#21262d" stroke-width="0.5"/>
-  <text x="564" y="174" class="mono" fill="#7ee787" font-size="9">⇄</text>
-  <text x="580" y="172" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">rtl-spi-controller</text>
-  <text x="580" y="184" class="mono" fill="#6e7681" font-size="9">full-duplex SPI master/slave</text>
-  <circle cx="790" cy="173" r="3.5" fill="#3fb950"/>
-  <line x1="556" y1="194" x2="794" y2="194" stroke="#21262d" stroke-width="0.5"/>
-  <rect x="556" y="207" width="6" height="10" rx="1" fill="#388bfd" class="cur"/>
-  <text x="566" y="216" class="mono" fill="#484f58" font-size="9">15 public repos · Verilog · SystemVerilog · C++</text>
+  <!-- WIP card -->
+  <rect x="18" y="186" width="238" height="56" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="32" y="204" class="cap">CURRENTLY BUILDING</text>
+  <!-- Pulsing dot -->
+  <circle cx="32" cy="222" r="4.5" fill="#f0883e" opacity="0.25"/>
+  <circle cx="32" cy="222" r="2.5" fill="#f0883e"/>
+  <text x="44" y="226" class="mono" fill="#f0883e" font-size="11" font-weight="bold">OrionRV</text>
+  <text x="104" y="226" class="sub"> — 4-core RV32IM multicore SoC</text>
+  <text x="32" y="237" class="sub" fill="#484f58">SystemVerilog · in progress</text>
+
+  <!-- ── MIDDLE COLUMN ───────────────────────────────────────── -->
+  <rect x="270" y="18" width="282" height="224" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Header -->
+  <text x="284" y="38" class="cap">COMMIT ACTIVITY</text>
+  <circle cx="430" cy="33" r="4" fill="#3fb950"/>
+  <text x="438" y="37" class="mono" fill="#3fb950" font-size="9" font-weight="bold">142 this year</text>
+
+  <!-- Horizontal guide lines -->
+  <line x1="300" y1="105" x2="536" y2="105" stroke="#1c2128" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="300" y1="138" x2="536" y2="138" stroke="#1c2128" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="300" y1="172" x2="536" y2="172" stroke="#21262d" stroke-width="0.8"/>
+
+  <!-- Y-axis ticks -->
+  <text x="284" y="108" class="lbl">hi</text>
+  <text x="284" y="141" class="lbl">md</text>
+  <text x="284" y="174" class="lbl">lo</text>
+
+  <!-- Bars with spring animation -->
+  <rect class="b1"  x="302" width="15" y="132" height="40" rx="3" fill="url(#gb)"/>
+  <rect class="b2"  x="321" width="15" y="107" height="65" rx="3" fill="url(#gb)"/>
+  <rect class="b3"  x="340" width="15" y="144" height="28" rx="3" fill="url(#gb)"/>
+  <rect class="b4"  x="359" width="15" y="094" height="78" rx="3" fill="url(#gb)"/>
+  <rect class="b5"  x="378" width="15" y="154" height="18" rx="3" fill="url(#gb)"/>
+  <rect class="b6"  x="397" width="15" y="120" height="52" rx="3" fill="url(#gb)"/>
+  <rect class="b7"  x="416" width="15" y="104" height="68" rx="3" fill="url(#gg)"/>
+  <rect class="b8"  x="435" width="15" y="128" height="44" rx="3" fill="url(#gg)"/>
+  <rect class="b9"  x="454" width="15" y="139" height="33" rx="3" fill="url(#gg)"/>
+  <rect class="b10" x="473" width="15" y="114" height="58" rx="3" fill="url(#gg)"/>
+  <rect class="b11" x="492" width="15" y="150" height="22" rx="3" fill="url(#gg)"/>
+  <rect class="b12" x="511" width="15" y="124" height="48" rx="3" fill="url(#gg)"/>
+
+  <!-- Month labels -->
+  <text x="304" y="185" class="lbl">M</text><text x="323" y="185" class="lbl">A</text>
+  <text x="342" y="185" class="lbl">M</text><text x="361" y="185" class="lbl">J</text>
+  <text x="380" y="185" class="lbl">J</text><text x="399" y="185" class="lbl">A</text>
+  <text x="418" y="185" class="lbl">S</text><text x="437" y="185" class="lbl">O</text>
+  <text x="456" y="185" class="lbl">N</text><text x="475" y="185" class="lbl">D</text>
+  <text x="494" y="185" class="lbl">J</text><text x="513" y="185" class="lbl">F</text>
+
+  <!-- Stats footer -->
+  <line x1="284" y1="198" x2="536" y2="198" stroke="#21262d" stroke-width="0.8"/>
+  <text x="284" y="213" class="sub">streak</text>
+  <text x="324" y="213" class="mono" fill="#388bfd" font-size="10" font-weight="bold">14 days</text>
+  <text x="392" y="213" class="sub">total</text>
+  <text x="420" y="213" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">142</text>
+  <text x="284" y="230" class="sub" fill="#484f58">updated 16 Mar 2026</text>
+
+  <!-- ── RIGHT COLUMN ────────────────────────────────────────── -->
+  <rect x="566" y="18" width="276" height="224" rx="10" fill="#161b22" stroke="#21262d" stroke-width="1"/>
+  <text x="580" y="38" class="cap">TOP PROJECTS</text>
+  <line x1="580" y1="46" x2="826" y2="46" stroke="#21262d" stroke-width="0.8"/>
+
+  <!-- Project 1 — OrionRV -->
+  <rect x="580" y="56" width="28" height="28" rx="6" fill="#f0883e" opacity="0.12"/>
+  <text x="587" y="75" class="mono" fill="#f0883e" font-size="13">⬡</text>
+  <text x="616" y="68" class="val">OrionRV</text>
+  <text x="616" y="80" class="sub">4-core RV32IM SoC</text>
+  <circle cx="828" cy="69" r="4" fill="#f0883e"/>
+  <line x1="580" y1="94" x2="826" y2="94" stroke="#1c2128" stroke-width="0.6"/>
+
+  <!-- Project 2 — rtl-riscv32 -->
+  <rect x="580" y="102" width="28" height="28" rx="6" fill="#388bfd" opacity="0.12"/>
+  <text x="585" y="121" class="mono" fill="#388bfd" font-size="14">⚡</text>
+  <text x="616" y="114" class="val">rtl-riscv32</text>
+  <text x="616" y="126" class="sub">single-cycle RV32I processor</text>
+  <circle cx="828" cy="115" r="4" fill="#3fb950"/>
+  <line x1="580" y1="140" x2="826" y2="140" stroke="#1c2128" stroke-width="0.6"/>
+
+  <!-- Project 3 — CMOS -->
+  <rect x="580" y="148" width="28" height="28" rx="6" fill="#d2a8ff" opacity="0.12"/>
+  <text x="585" y="167" class="mono" fill="#d2a8ff" font-size="13">⬟</text>
+  <text x="616" y="160" class="val">CMOS-Std-Cell-Lib</text>
+  <text x="616" y="172" class="sub">transistor-level primitives</text>
+  <circle cx="828" cy="161" r="4" fill="#3fb950"/>
+  <line x1="580" y1="186" x2="826" y2="186" stroke="#1c2128" stroke-width="0.6"/>
+
+  <!-- Project 4 — SPI -->
+  <rect x="580" y="194" width="28" height="28" rx="6" fill="#7ee787" opacity="0.12"/>
+  <text x="585" y="213" class="mono" fill="#7ee787" font-size="13">⇄</text>
+  <text x="616" y="206" class="val">rtl-spi-controller</text>
+  <text x="616" y="218" class="sub">full-duplex SPI master/slave</text>
+  <circle cx="828" cy="207" r="4" fill="#3fb950"/>
+
+  <!-- Footer bar -->
+  <line x1="580" y1="232" x2="826" y2="232" stroke="#21262d" stroke-width="0.8"/>
+  <rect x="580" y="239" width="5" height="9" rx="1" fill="#388bfd" class="cur"/>
+  <text x="590" y="247" class="sub" fill="#484f58">15 repos · Verilog · SystemVerilog · C++</text>
 </svg>
