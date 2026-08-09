@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="820" height="240">
   <defs>
     <style>
@@ -5,7 +6,7 @@
       @keyframes pulseNebula { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
       @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-2.5px); } }
       .cur { animation: pulse 1.1s ease-in-out infinite; }
-      .mono { font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Consolas, "Liberation Mono", Menlo, monospace; }
+      .mono { font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace; }
       .nebula-pulse { animation: pulseNebula 8s infinite ease-in-out; }
       .float1 { animation: float 4s ease-in-out infinite; }
       .float2 { animation: float 4.2s ease-in-out infinite 1s; }
