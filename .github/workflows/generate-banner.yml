@@ -114,7 +114,7 @@ jobs:
           updated = now.strftime("%d %b %Y")
 
           svg = f"""<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="820" height="240">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="820" height="240">
             <defs>
               <style>
                 @keyframes pulse {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.3; }} }}
