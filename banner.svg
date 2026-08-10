@@ -150,25 +150,27 @@
   <g class="float1">
     <text x="564" y="66" class="mono icon-glow" fill="#f0883e" font-size="9">🔥</text>
   </g>
-  <text x="580" y="64" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">Prolepsis</text>
+  <text x="580" y="64" class="mono" fill="#e6edf3" font-size="9.5" font-weight="bold">Prolepsis</text>
   <text x="580" y="75" class="mono" fill="#8b949e" font-size="8">ISA-agnostic, RTL-based predictive TMU</text>
-  <text x="580" y="85" class="mono" fill="#8b949e" font-size="8">for multicore processors</text>
+  <text x="580" y="85" class="mono" fill="#8b949e" font-size="8">designed for multicore processors.</text>
   <circle cx="790" cy="63" r="3.5" fill="#3fb950" class="icon-glow"/>
   
   <line x1="556" y1="94" x2="794" y2="94" stroke="#21262d" stroke-width="0.5"/>
   <g class="float2">
-    <text x="564" y="116" class="mono icon-glow" fill="#d2a8ff" font-size="9">🔒</text>
+    <text x="564" y="116" class="mono icon-glow" fill="#d2a8ff" font-size="9">🚀</text>
   </g>
-  <text x="580" y="114" class="mono" fill="#e6edf3" font-size="9.5" font-weight="bold">AES128-LowPower-Architecture</text>
-  <text x="580" y="126" class="mono" fill="#8b949e" font-size="9">Hardware AES-128</text>
+  <text x="580" y="114" class="mono" fill="#e6edf3" font-size="9.5" font-weight="bold">MobileNet-Accelerator-RTL</text>
+  <text x="580" y="125" class="mono" fill="#8b949e" font-size="8">🏆 DVCon India '26 Top 100 submission.</text>
+  <text x="580" y="135" class="mono" fill="#8b949e" font-size="8">Verilog Systolic Array &amp; on-the-fly GAP.</text>
   <circle cx="790" cy="113" r="3.5" fill="#3fb950" class="icon-glow"/>
   
   <line x1="556" y1="144" x2="794" y2="144" stroke="#21262d" stroke-width="0.5"/>
   <g class="float3">
-    <text x="564" y="166" class="mono icon-glow" fill="#388bfd" font-size="9">⚡</text>
+    <text x="564" y="166" class="mono icon-glow" fill="#388bfd" font-size="9">🔒</text>
   </g>
-  <text x="580" y="164" class="mono" fill="#e6edf3" font-size="10" font-weight="bold">rtl-riscv32</text>
-  <text x="580" y="176" class="mono" fill="#8b949e" font-size="9">single-cycle RV32I</text>
+  <text x="580" y="164" class="mono" fill="#e6edf3" font-size="9.5" font-weight="bold">AES128-LowPower-Architecture</text>
+  <text x="580" y="175" class="mono" fill="#8b949e" font-size="8">Hardware AES-128 cryptographic engine</text>
+  <text x="580" y="185" class="mono" fill="#8b949e" font-size="8">optimized for low-power applications.</text>
   <circle cx="790" cy="163" r="3.5" fill="#3fb950" class="icon-glow"/>
   
   <line x1="556" y1="194" x2="794" y2="194" stroke="#21262d" stroke-width="0.5"/>
