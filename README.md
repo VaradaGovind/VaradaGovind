@@ -4,6 +4,6 @@
 
 <p align="center">
   <a href="https://github.com/VaradaGovind">
-    <img width="820" src="https://raw.githubusercontent.com/VaradaGovind/VaradaGovind/main/banner.svg?v=7" />
+    <img width="820" src="https://raw.githubusercontent.com/VaradaGovind/VaradaGovind/main/banner.svg?v=20260825_aligned" />
   </a>
 </p>
