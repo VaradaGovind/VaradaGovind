@@ -8,6 +8,7 @@
 
       .mono { font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
       .sans { font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .emoji { font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif; }
       
       .font-bold { font-weight: 700; }
       .font-black { font-weight: 900; }
@@ -129,7 +130,7 @@
   <rect x="10" y="10" width="796" height="216" rx="8" class="bg-canvas stroke-main" stroke-width="2.5" />
   <rect x="10" y="10" width="796" height="216" rx="8" fill="url(#dot-grid)" />
 
-  <!-- Top Silicon IC Edge Pins (Clean IC Header) -->
+  <!-- Top Silicon IC Edge Pins -->
   <g class="stroke-main" stroke-width="1.2" opacity="0.35">
     <line x1="280" y1="10" x2="280" y2="15" />
     <line x1="292" y1="10" x2="292" y2="15" />
@@ -197,8 +198,8 @@
     <rect x="24" y="156" width="250" height="64" rx="6" class="shadow-box" />
     <rect x="22" y="154" width="250" height="64" rx="6" class="panel-bg stroke-main" stroke-width="1.8" />
     
-    <!-- Project Title -->
-    <text x="32" y="172" class="mono font-black text-head" font-size="9.5">Argus — Multi-Agent AI</text>
+    <!-- Project Title with Emoji -->
+    <text x="32" y="172" class="mono font-black text-head" font-size="9.5">🤖 Argus — Multi-Agent AI</text>
 
     <!-- WIP Pill Badge on the right -->
     <rect x="200" y="161" width="30" height="14" rx="3" class="fill-pink stroke-main" stroke-width="1.2" />
@@ -296,7 +297,7 @@
     <line x1="556" y1="47" x2="788" y2="47" class="stroke-sub" stroke-width="1" opacity="0.6" />
 
     <!-- Project 1: Prolepsis -->
-    <text x="558" y="63" class="mono font-black text-head" font-size="10">Prolepsis</text>
+    <text x="558" y="63" class="mono font-black text-head" font-size="9.5">🔮 Prolepsis</text>
     <g class="float-1">
       <rect x="750" y="52" width="38" height="14" rx="3" class="fill-yellow stroke-main" stroke-width="1" />
       <text x="769" y="62.5" class="mono font-black badge-text" font-size="7" text-anchor="middle">TMU</text>
@@ -307,7 +308,7 @@
     <line x1="556" y1="93" x2="788" y2="93" class="stroke-sub" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.45" />
 
     <!-- Project 2: MobileNet-Accelerator-RTL -->
-    <text x="558" y="109" class="mono font-black text-head" font-size="10">MobileNet-Accel</text>
+    <text x="558" y="109" class="mono font-black text-head" font-size="9.5">🏆 MobileNet-Accel</text>
     <g class="float-2">
       <rect x="728" y="98" width="60" height="14" rx="3" class="fill-purple stroke-main" stroke-width="1" />
       <text x="758" y="108.5" class="mono font-black badge-text" font-size="6.8" text-anchor="middle">DVCON '26</text>
@@ -318,7 +319,7 @@
     <line x1="556" y1="139" x2="788" y2="139" class="stroke-sub" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.45" />
 
     <!-- Project 3: AES128-LowPower-Architecture -->
-    <text x="558" y="155" class="mono font-black text-head" font-size="10">AES-128 Engine</text>
+    <text x="558" y="155" class="mono font-black text-head" font-size="9.5">🔐 AES-128 Engine</text>
     <g class="float-3">
       <rect x="738" y="144" width="50" height="14" rx="3" class="fill-cyan stroke-main" stroke-width="1" />
       <text x="763" y="154.5" class="mono font-black badge-text" font-size="6.8" text-anchor="middle">CRYPTO</text>
