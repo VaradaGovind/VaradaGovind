@@ -8,7 +8,6 @@
 
       .mono { font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
       .sans { font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-      .emoji { font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif; }
       
       .font-bold { font-weight: 700; }
       .font-black { font-weight: 900; }
@@ -105,7 +104,7 @@
       .b5{animation:grow5 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.29s both;}
 @keyframes grow6{0%{height:0px;y:142px}100%{height:4px;y:138px}}
       .b6{animation:grow6 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.35s both;}
-@keyframes grow7{0%{height:0px;y:142px}100%{height:16px;y:126px}}
+@keyframes grow7{0%{height:0px;y:142px}100%{height:17px;y:125px}}
       .b7{animation:grow7 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.41s both;}
 @keyframes grow8{0%{height:0px;y:142px}100%{height:16px;y:126px}}
       .b8{animation:grow8 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.47s both;}
@@ -115,7 +114,7 @@
       .b10{animation:grow10 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.59s both;}
 @keyframes grow11{0%{height:0px;y:142px}100%{height:4px;y:138px}}
       .b11{animation:grow11 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.65s both;}
-@keyframes grow12{0%{height:0px;y:142px}100%{height:38px;y:104px}}
+@keyframes grow12{0%{height:0px;y:142px}100%{height:48px;y:94px}}
       .b12{animation:grow12 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.71s both;}
 
     </style>
@@ -223,7 +222,7 @@
     
     <!-- Total Pill -->
     <rect x="444" y="26" width="80" height="16" rx="3" class="fill-green stroke-main" stroke-width="1.2" />
-    <text x="484" y="37.5" class="mono font-black badge-text" font-size="7.8" text-anchor="middle">255 this year</text>
+    <text x="484" y="37.5" class="mono font-black badge-text" font-size="7.8" text-anchor="middle">269 this year</text>
 
     <line x1="294" y1="47" x2="526" y2="47" class="stroke-sub" stroke-width="1" opacity="0.6" />
 
@@ -247,12 +246,12 @@
       <rect class="b4 bar-base bar-cyan" x="354.5" width="11" y="88" height="54" rx="2" />
       <rect class="b5 bar-base bar-cyan" x="372.0" width="11" y="138" height="4" rx="2" />
       <rect class="b6 bar-base bar-cyan" x="389.5" width="11" y="138" height="4" rx="2" />
-      <rect class="b7 bar-base bar-green" x="407.0" width="11" y="126" height="16" rx="2" />
+      <rect class="b7 bar-base bar-green" x="407.0" width="11" y="125" height="17" rx="2" />
       <rect class="b8 bar-base bar-green" x="424.5" width="11" y="126" height="16" rx="2" />
       <rect class="b9 bar-base bar-green" x="442.0" width="11" y="138" height="4" rx="2" />
       <rect class="b10 bar-base bar-green" x="459.5" width="11" y="138" height="4" rx="2" />
       <rect class="b11 bar-base bar-green" x="477.0" width="11" y="138" height="4" rx="2" />
-      <rect class="b12 bar-base bar-green" x="494.5" width="11" y="104" height="38" rx="2" />
+      <rect class="b12 bar-base bar-green" x="494.5" width="11" y="94" height="48" rx="2" />
 
     </g>
 
@@ -278,7 +277,7 @@
     
     <g class="mono" font-size="8">
       <text x="296" y="182" class="text-muted">streak: <tspan class="text-head font-bold">0d</tspan></text>
-      <text x="360" y="182" class="text-muted">total: <tspan class="text-head font-bold">255</tspan></text>
+      <text x="360" y="182" class="text-muted">total: <tspan class="text-head font-bold">269</tspan></text>
       <text x="420" y="182" class="text-dim">sync: 25 Aug 2026</text>
       <text x="296" y="200" class="mono text-dim" font-size="7">● LIVE CLOCK // 12-MONTH TRACE</text>
     </g>
