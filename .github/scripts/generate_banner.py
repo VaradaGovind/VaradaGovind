@@ -2,7 +2,7 @@ import urllib.request, json, os, datetime
 
 token    = os.environ.get("GITHUB_TOKEN", "")
 username = os.environ.get("USERNAME", "VaradaGovind")
-headers  = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"} if token else {"Accept": "application/vnd.github+json"}
+headers  = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "User-Agent": "Python-urllib"} if token else {"Accept": "application/vnd.github+json", "User-Agent": "Python-urllib"}
 
 # ── User profile ────────────────────────────────────────
 try:
@@ -18,6 +18,8 @@ try:
     req   = urllib.request.Request(f"https://api.github.com/users/{username}/repos?per_page=100", headers=headers)
     repos = json.loads(urllib.request.urlopen(req).read())
     stars = sum(r.get("stargazers_count", 0) for r in repos)
+    if stars == 0:
+        stars = 7
 except Exception as e:
     print("Stars fetch fallback:", e)
     stars = 7
@@ -287,16 +289,16 @@ svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="8
     <rect x="24" y="156" width="250" height="64" rx="6" class="shadow-box" />
     <rect x="22" y="154" width="250" height="64" rx="6" class="panel-bg stroke-main" stroke-width="1.8" />
     
+    <!-- Yellow Pulse Dot before the name -->
+    <circle cx="34" cy="168.5" r="3.5" class="fill-yellow stroke-main" stroke-width="1" />
+    <circle cx="34" cy="168.5" r="3.5" class="fill-yellow pulse" />
+
     <!-- Project Title with Emoji -->
-    <text x="32" y="172" class="mono font-black text-head" font-size="9.5">🤖 Argus — Multi-Agent AI</text>
+    <text x="44" y="172" class="mono font-black text-head" font-size="9.2">🤖 Argus — Multi-Agent AI</text>
 
     <!-- WIP Pill Badge on the right -->
-    <rect x="200" y="161" width="30" height="14" rx="3" class="fill-pink stroke-main" stroke-width="1.2" />
-    <text x="215" y="171.5" class="mono font-black badge-text" font-size="7.5" text-anchor="middle">WIP</text>
-    
-    <!-- Pulse dot (fixed stationary position, pulsing opacity only) -->
-    <circle cx="242" cy="168" r="3.5" class="fill-green stroke-main" stroke-width="1" />
-    <circle cx="242" cy="168" r="3.5" class="fill-green pulse" />
+    <rect x="224" y="161" width="38" height="15" rx="3" class="fill-pink stroke-main" stroke-width="1.2" />
+    <text x="243" y="171.5" class="mono font-black badge-text" font-size="7.5" text-anchor="middle">WIP</text>
 
     <text x="32" y="190" class="mono text-muted" font-size="7.8">Hardware Debugging &amp; Root Cause Analysis</text>
     <text x="32" y="204" class="mono text-dim" font-size="7.2">Silicon Telemetry &amp; LLM Verification</text>
