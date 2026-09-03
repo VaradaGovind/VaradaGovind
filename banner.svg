@@ -279,7 +279,7 @@
     <g class="mono" font-size="8">
       <text x="293" y="180" class="text-muted">streak: <tspan class="text-head font-bold">1d</tspan></text>
       <text x="370" y="180" class="text-muted">total: <tspan class="text-head font-bold">281</tspan></text>
-      <text x="523" y="180" class="text-dim" text-anchor="end">sync: 02 Sep 2026</text>
+      <text x="523" y="180" class="text-dim" text-anchor="end">sync: 03 Sep 2026</text>
       <text x="293" y="198" class="mono text-dim" font-size="7">● LIVE CLOCK // 12-MONTH TRACE</text>
     </g>
   </g>
