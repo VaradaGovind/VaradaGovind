@@ -188,7 +188,7 @@
     <rect x="153" y="96" width="120" height="50" rx="5" class="shadow-box" />
     <rect x="151" y="94" width="120" height="50" rx="5" class="fill-yellow stroke-main" stroke-width="1.8" />
     <text x="161" y="108" class="mono font-bold badge-text" font-size="8" letter-spacing="0.8">STARS</text>
-    <text x="161" y="128" class="mono font-black badge-text" font-size="19">6</text>
+    <text x="161" y="128" class="mono font-black badge-text" font-size="19">7</text>
     <text x="161" y="138" class="mono badge-text" font-size="6.8" opacity="0.9">earned stars ★</text>
   </g>
 
@@ -279,7 +279,7 @@
     <g class="mono" font-size="8">
       <text x="293" y="180" class="text-muted">streak: <tspan class="text-head font-bold">1d</tspan></text>
       <text x="370" y="180" class="text-muted">total: <tspan class="text-head font-bold">527</tspan></text>
-      <text x="523" y="180" class="text-dim" text-anchor="end">sync: 14 Sep 2026</text>
+      <text x="523" y="180" class="text-dim" text-anchor="end">sync: 15 Sep 2026</text>
       <text x="293" y="198" class="mono text-dim" font-size="7">● LIVE CLOCK // 12-MONTH TRACE</text>
     </g>
   </g>
